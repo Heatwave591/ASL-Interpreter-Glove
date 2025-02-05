@@ -12,11 +12,6 @@
 * Recognize and translate the entire ASL alphabet.
 * Identify and process basic static signs.
 
-**Future Goals:**
-
-* Support for dynamic signs.
-* Integration of two gloves for improved accuracy.
-* PCB design for a sleeker and more compact build.
 
 **Necessary Equipment and Sensors:**
 
@@ -29,6 +24,7 @@
 **Project Description:**
 
 The ASL-interpreting glove will be designed to detect hand gestures and translate them into spoken words and a visual interface output. The system will consist of flex sensors to track finger movements, MPU6050 sensors for motion detection, and ESP32 microcontrollers to process and transmit data to an output system.
+![Glove Prototype](sources/flowchart.png)
 
 **Learning Goals:**
 
@@ -42,6 +38,13 @@ The ASL-interpreting glove will be designed to detect hand gestures and translat
 Two similar models exist:
 
 * UCLA’s Sign-to-Speech Translating Glove (details to be added)
+
+
+**Future Goals:**
+
+* Support for dynamic signs.
+* Integration of two gloves for improved accuracy.
+* PCB design for a sleeker and more compact build.
 
 **Sources:**
 
