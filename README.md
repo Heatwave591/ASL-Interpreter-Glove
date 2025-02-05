@@ -1,61 +1,49 @@
-ASL Interpreting Glove
+# ECE5466: Project - ASL Interpreting Glove
 
-Team Members
+**Team Members:**
 
-Kris Gurung
+* Kris Gurung
+* Anirudhhan Raghuraman
+* Madalyn Wiley
 
-Anirudhhan Raghuraman
+**Project Goals:**
 
-Madalyn Wiley
+* Design an American Sign Language (ASL)-interpreting glove that converts sign language to English and outputs the translation.
+* Recognize and translate the entire ASL alphabet.
+* Identify and process basic static signs.
 
-Project Goals
+**Future Goals:**
 
-The objective of this project is to design an American Sign Language (ASL)-interpreting glove that translates sign language into English and outputs the translation through audio and a visual user interface.
+* Support for dynamic signs.
+* Integration of two gloves for improved accuracy.
+* PCB design for a sleeker and more compact build.
 
-Features:
+**Necessary Equipment and Sensors:**
 
-Recognition of the entire ASL alphabet
+* (2) ESP32 microcontrollers
+* (15) Flex sensors
+* (2) 8 Ohm speakers
+* (2) MPU6050 accelerometer and gyroscope sensors
+* (1) Pair of gloves
 
-Interpretation of basic static signs
+**Project Description:**
 
-Future Enhancements:
+The ASL-interpreting glove will be designed to detect hand gestures and translate them into spoken words and a visual interface output. The system will consist of flex sensors to track finger movements, MPU6050 sensors for motion detection, and ESP32 microcontrollers to process and transmit data to an output system.
 
-Dynamic sign recognition
+**Learning Goals:**
 
-Integration of two gloves for improved accuracy
+* Develop a database for storing and retrieving sensor values.
+* Accurately measure sensor data using ESP32.
+* Integrate ESP32 with an Android application.
+* Combine multiple components into a fully functional product.
 
-Development of a PCB for a more compact design
+**Comparison to Existing Models:**
 
-Necessary Equipment and Sensors
+Two similar models exist:
 
-(2) ESP32 microcontrollers
+* UCLA’s Sign-to-Speech Translating Glove (details to be added)
 
-(15) Flex Sensors
+**Sources:**
 
-(2) 8 Ohm Speakers
-
-(2) MPU6050 Motion Sensors
-
-(1) Pair of Gloves
-
-Project Description
-
-The ASL-interpreting glove will use a combination of flex sensors and motion sensors to detect hand movements and gestures. The detected gestures will be processed using an ESP32 microcontroller, and the translated text will be output via a speaker and a visual user interface.
-
-Learning Goals
-
-Understanding how to store and process sensor data
-
-Measuring sensor values using an ESP32 microcontroller
-
-Integrating an ESP32 with an Android application
-
-Combining multiple components into a functional final product
-
-Comparison to Existing Models
-
-Several models exist for ASL interpretation, including:
-
-UCLA’s Sign-to-Speech Translating Glove
-
-Other sensor-based ASL gloves with different sensor configurations and processing techniques
+* [1] "Sign Language Alphabet - Tips and Tricks to Remember it Fast!" Lingvano ASL, Nov. 08, 2022. [Link](https://lingvano.com/blog/en/sign-language/alphabet/)
+* [2] "Resistive Flex Sensors | Spectra Symbol." [Link](https://www.spectrasymbol.com/flex-sensor)
