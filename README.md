@@ -24,7 +24,7 @@
 **Project Description:**
 
 The ASL-interpreting glove will be designed to detect hand gestures and translate them into spoken words and a visual interface output. The system will consist of flex sensors to track finger movements, MPU6050 sensors for motion detection, and ESP32 microcontrollers to process and transmit data to an output system.
-![Glove Prototype](sources/flowchart.png)
+![Glove Prototype](Sources/flowchart.png)
 
 **Learning Goals:**
 
