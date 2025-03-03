@@ -1,6 +1,4 @@
 
-
-const char index_html[] PROGMEM = R"=====(
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,7 +118,7 @@ const char index_html[] PROGMEM = R"=====(
   
   <script>
     function updateValues() {
-      fetch('/data')
+      fetch('/data.json')
         .then(response => response.json())
         .then(data => {
           // Update sensor values
@@ -156,4 +154,3 @@ const char index_html[] PROGMEM = R"=====(
   </script>
 </body>
 </html>
-)=====";
