@@ -26,6 +26,15 @@
 The ASL-interpreting glove will be designed to detect hand gestures and translate them into spoken words and a visual interface output. The system will consist of flex sensors to track finger movements, MPU6050 sensors for motion detection, and ESP32 microcontrollers to process and transmit data to an output system.
 ![Glove Prototype](Sources/flowchart.png)
 
+
+** Important points
+- This project utilizes the SPIFFS toolkit.
+- This toolkit can't be used with the new arduino IDE for some reason... Apparently, the architecture of IDE version 2.x is different from the IDE version 1.x and the developers have not created the toolkit fof the new version.
+- Sfoutout to me-no-dev (https://github.com/me-no-dev/) for the toolkit.
+
+** Running the Code
+- Initial Setup
+- https://github.com/me-no-dev/arduino-esp32fs-plugin
 **Learning Goals:**
 
 * Develop a database for storing and retrieving sensor values.
