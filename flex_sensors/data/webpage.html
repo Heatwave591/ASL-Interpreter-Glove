@@ -1,175 +1,164 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+/*
+ * ESP Finger Sensor Web Server - HTML Content
+ * 
+ * This file contains the HTML, CSS, and JavaScript for the web interface.
+ * Save this in a separate tab in the Arduino IDE with the name "html_content.h"
+ */
+
+const char index_html[] PROGMEM = R"=====(
+<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  <title>Finger Sensor Monitor</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      text-align: center; 
+      margin: 0; 
+      padding: 20px; 
+      background-color: #f5f5f5;
+    }
+    h1 { 
+      color: #333; 
+      margin-bottom: 20px;
+    }
+    .container { 
+      max-width: 800px; 
+      margin: 0 auto; 
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .sensor-grid { 
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: space-between; 
+      margin-bottom: 20px; 
+    }
+    .sensor-box { 
+      width: 18%; 
+      padding: 10px; 
+      border: 1px solid #ddd; 
+      border-radius: 5px;
+      margin-bottom: 10px; 
+      background-color: #f8f8f8; 
+    }
+    .sensor-box h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #666;
+    }
+    .sensor-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0066cc;
+    }
+    .decision-box { 
+      padding: 15px; 
+      background-color: #4CAF50; 
+      color: white; 
+      font-size: 24px; 
+      margin-bottom: 20px; 
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .log { 
+      background-color: #333; 
+      color: #fff; 
+      padding: 10px; 
+      text-align: left; 
+      height: 200px; 
+      overflow-y: auto; 
+      font-family: monospace; 
+      border-radius: 5px;
+    }
+    .log-entry {
+      margin: 5px 0;
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+    }
+    .timestamp {
+      color: #aaa;
+    }
+    .ip-address {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-<p class="p1"><br></p>
-<p class="p1"><br></p>
-<p class="p2">const char index_html[] PROGMEM = R"=====(</p>
-<p class="p2">&lt;!DOCTYPE html&gt;</p>
-<p class="p2">&lt;html&gt;</p>
-<p class="p2">&lt;head&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;title&gt;Finger Sensor Monitor&lt;/title&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;meta name='viewport' content='width=device-width, initial-scale=1'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>body {<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-align: center;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin: 0;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 20px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>background-color: #f5f5f5;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>h1 {<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #333;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.container {<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>max-width: 800px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin: 0 auto;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>background-color: white;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>box-shadow: 0 2px 10px rgba(0,0,0,0.1);</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.sensor-grid {<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>display: flex;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>flex-wrap: wrap;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>justify-content: space-between;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 20px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.sensor-box {<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>width: 18%;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 10px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>border: 1px solid #ddd;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 5px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 10px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>background-color: #f8f8f8;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.sensor-box h3 {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-top: 0;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #666;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.sensor-value {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 24px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #0066cc;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.decision-box {<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 15px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>background-color: #4CAF50;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: white;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 24px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-bottom: 20px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 5px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.log {<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>background-color: #333;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #fff;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding: 10px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>text-align: left;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>height: 200px;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>overflow-y: auto;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-family: monospace;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-radius: 5px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.log-entry {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin: 5px 0;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>border-bottom: 1px solid #444;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>padding-bottom: 5px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.timestamp {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #aaa;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">    </span>.ip-address {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>font-size: 12px;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>color: #666;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>margin-top: 10px;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p2">&lt;/head&gt;</p>
-<p class="p2">&lt;body&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;div class='container'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;h1&gt;Finger Sensor Monitor&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span></p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class='sensor-grid'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;div class='sensor-box'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;h3&gt;Finger 1&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;div class='sensor-value' id='f1'&gt;0&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;div class='sensor-box'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;h3&gt;Finger 2&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;div class='sensor-value' id='f2'&gt;0&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;div class='sensor-box'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;h3&gt;Finger 3&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;div class='sensor-value' id='f3'&gt;0&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;div class='sensor-box'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;h3&gt;Finger 4&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;div class='sensor-value' id='f4'&gt;0&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;div class='sensor-box'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;h3&gt;Finger 5&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>&lt;div class='sensor-value' id='f5'&gt;0&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span></p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class='decision-box' id='decision'&gt;Waiting for data...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span></p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class='log' id='log'&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span>&lt;div class='log-entry'&gt;&lt;span class='timestamp'&gt;[System]&lt;/span&gt; Finger sensor monitor initialized&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span></p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span>function updateValues() {</p>
-<p class="p2"><span class="Apple-converted-space">      </span>fetch('/data')</p>
-<p class="p2"><span class="Apple-converted-space">        </span>.then(response =&gt; response.json())</p>
-<p class="p2"><span class="Apple-converted-space">        </span>.then(data =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">          </span>// Update sensor values</p>
-<p class="p2"><span class="Apple-converted-space">          </span>document.getElementById('f1').innerText = data.f1;</p>
-<p class="p2"><span class="Apple-converted-space">          </span>document.getElementById('f2').innerText = data.f2;</p>
-<p class="p2"><span class="Apple-converted-space">          </span>document.getElementById('f3').innerText = data.f3;</p>
-<p class="p2"><span class="Apple-converted-space">          </span>document.getElementById('f4').innerText = data.f4;</p>
-<p class="p2"><span class="Apple-converted-space">          </span>document.getElementById('f5').innerText = data.f5;</p>
-<p class="p1"><span class="Apple-converted-space">          </span></p>
-<p class="p2"><span class="Apple-converted-space">          </span>// Update decision</p>
-<p class="p2"><span class="Apple-converted-space">          </span>document.getElementById('decision').innerText = data.decision;</p>
-<p class="p1"><span class="Apple-converted-space">          </span></p>
-<p class="p2"><span class="Apple-converted-space">          </span>// Add to log</p>
-<p class="p2"><span class="Apple-converted-space">          </span>const log = document.getElementById('log');</p>
-<p class="p2"><span class="Apple-converted-space">          </span>const timestamp = new Date().toLocaleTimeString();</p>
-<p class="p2"><span class="Apple-converted-space">          </span>const entry = document.createElement('div');</p>
-<p class="p2"><span class="Apple-converted-space">          </span>entry.className = 'log-entry';</p>
-<p class="p2"><span class="Apple-converted-space">          </span>entry.innerHTML = `&lt;span class='timestamp'&gt;[${timestamp}]&lt;/span&gt; F1: ${data.f1}, F2: ${data.f2}, F3: ${data.f3}, F4: ${data.f4}, F5: ${data.f5} → ${data.decision}`;</p>
-<p class="p1"><span class="Apple-converted-space">          </span></p>
-<p class="p2"><span class="Apple-converted-space">          </span>log.appendChild(entry);</p>
-<p class="p2"><span class="Apple-converted-space">          </span>log.scrollTop = log.scrollHeight;</p>
-<p class="p2"><span class="Apple-converted-space">        </span>})</p>
-<p class="p2"><span class="Apple-converted-space">        </span>.catch(error =&gt; {</p>
-<p class="p2"><span class="Apple-converted-space">          </span>console.error('Error fetching sensor data:', error);</p>
-<p class="p2"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span></p>
-<p class="p2"><span class="Apple-converted-space">    </span>// Update values every 2.5 seconds</p>
-<p class="p2"><span class="Apple-converted-space">    </span>setInterval(updateValues, 2500);</p>
-<p class="p1"><span class="Apple-converted-space">    </span></p>
-<p class="p2"><span class="Apple-converted-space">    </span>// Initial update</p>
-<p class="p2"><span class="Apple-converted-space">    </span>updateValues();</p>
-<p class="p2"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p2">&lt;/body&gt;</p>
-<p class="p2">&lt;/html&gt;</p>
-<p class="p2">)=====";</p>
+  <div class='container'>
+    <h1>Finger Sensor Monitor</h1>
+    
+    <div class='sensor-grid'>
+      <div class='sensor-box'>
+        <h3>Finger 1</h3>
+        <div class='sensor-value' id='f1'>0</div>
+      </div>
+      <div class='sensor-box'>
+        <h3>Finger 2</h3>
+        <div class='sensor-value' id='f2'>0</div>
+      </div>
+      <div class='sensor-box'>
+        <h3>Finger 3</h3>
+        <div class='sensor-value' id='f3'>0</div>
+      </div>
+      <div class='sensor-box'>
+        <h3>Finger 4</h3>
+        <div class='sensor-value' id='f4'>0</div>
+      </div>
+      <div class='sensor-box'>
+        <h3>Finger 5</h3>
+        <div class='sensor-value' id='f5'>0</div>
+      </div>
+    </div>
+    
+    <div class='decision-box' id='decision'>Waiting for data...</div>
+    
+    <div class='log' id='log'>
+      <div class='log-entry'><span class='timestamp'>[System]</span> Finger sensor monitor initialized</div>
+    </div>
+  </div>
+  
+  <script>
+    function updateValues() {
+      fetch('/data')
+        .then(response => response.json())
+        .then(data => {
+          // Update sensor values
+          document.getElementById('f1').innerText = data.f1;
+          document.getElementById('f2').innerText = data.f2;
+          document.getElementById('f3').innerText = data.f3;
+          document.getElementById('f4').innerText = data.f4;
+          document.getElementById('f5').innerText = data.f5;
+          
+          // Update decision
+          document.getElementById('decision').innerText = data.decision;
+          
+          // Add to log
+          const log = document.getElementById('log');
+          const timestamp = new Date().toLocaleTimeString();
+          const entry = document.createElement('div');
+          entry.className = 'log-entry';
+          entry.innerHTML = `<span class='timestamp'>[${timestamp}]</span> F1: ${data.f1}, F2: ${data.f2}, F3: ${data.f3}, F4: ${data.f4}, F5: ${data.f5} → ${data.decision}`;
+          
+          log.appendChild(entry);
+          log.scrollTop = log.scrollHeight;
+        })
+        .catch(error => {
+          console.error('Error fetching sensor data:', error);
+        });
+    }
+    
+    // Update values every 2.5 seconds
+    setInterval(updateValues, 2500);
+    
+    // Initial update
+    updateValues();
+  </script>
 </body>
 </html>
+)=====";
