@@ -43,16 +43,6 @@ void loop(){
   Serial.print(f_volt5);
   Serial.print("\t");
 
-  if (f_volt1 > 200 && f_volt2 < 2000){
-      Serial.println("Water");
-    }
 
-  else if (f_volt1 <200 && f_volt2 > 2000){
-    Serial.println("Food");
-  }
-  
-  else{
-      Serial.println("3, 4, 5");
-    }
     delay(2500);                   
   }
