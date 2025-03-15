@@ -98,6 +98,9 @@ void updateSensorValues() {
   f_volt5 = random(1024);
   
   // End of testing code
+  // Looks like the sensors are working
+  // Still keeping the testing code in case
+  // might use it when fucking around without sensors
 
   Serial.print("Finger 1: ");
   Serial.print(f_volt1);
@@ -151,6 +154,8 @@ void handleRoot() {
 }
 
 // Handle data request for AJAX updates
+// Need this for asynch JSON management
+//
 void handleData() {
   String jsonData = "{";
   jsonData += "\"f1\":" + String(f_volt1) + ",";
@@ -164,7 +169,7 @@ void handleData() {
   server.send(200, "application/json", jsonData);
 }
 
-// Handle 404 Not Found errors
+
 void handleNotFound() {
   server.send(404, "text/plain", "404: Not found");
 }
