@@ -107,7 +107,7 @@ void loop() {
     f_volt5 = random(1024);
     
     FirebaseJson json;
-    
+
     // This is the same testing code from
     // some of the other files.
     // Remove this while using sensors
@@ -129,10 +129,10 @@ void loop() {
     // String historyPath = databasePath + "/history/" + String(millis());
 
     if (Firebase.RTDB.setJSON(&fbdo, latestPath.c_str(), &json)) {
-      Serial.println("Latest data sent successfully");
+      Serial.println("GGWP");
     } else {
-      Serial.println("Failed to send latest data");
-      Serial.println("Reason: " + fbdo.errorReason());
+      Serial.println("Kal");
+      Serial.println(": " + fbdo.errorReason());
     }
     
   }
