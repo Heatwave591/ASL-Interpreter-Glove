@@ -129,10 +129,10 @@ void loop() {
     // String historyPath = databasePath + "/history/" + String(millis());
 
     if (Firebase.RTDB.setJSON(&fbdo, latestPath.c_str(), &json)) {
-      Serial.println("Latest data sent successfully");
+      Serial.println("GGWP");
     } else {
-      Serial.println("Failed to send latest data");
-      Serial.println("Reason: " + fbdo.errorReason());
+      Serial.println("Kal");
+      Serial.println(": " + fbdo.errorReason());
     }
     
   }
