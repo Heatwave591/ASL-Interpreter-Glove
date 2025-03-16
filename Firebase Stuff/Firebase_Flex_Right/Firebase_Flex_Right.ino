@@ -107,7 +107,7 @@ void loop() {
     f_volt5 = random(1024);
     
     FirebaseJson json;
-
+    
     // This is the same testing code from
     // some of the other files.
     // Remove this while using sensors
