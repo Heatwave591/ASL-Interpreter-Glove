@@ -1,4 +1,5 @@
 // Om Namo Narayana
+
 #include <WiFi.h>
 #include <Firebase_ESP_Client.h>
 
@@ -66,7 +67,7 @@ void setup() {
   Firebase.begin(&config, &auth);
   Firebase.reconnectWiFi(true);
 
-  databasePath = "/flex_sensors";
+  databasePath = "/flex_sensors_Left";
 }
 
 void loop() {
@@ -124,8 +125,8 @@ void loop() {
     // I still don't completely understand what's going on here.
     // For some reason, line 127 and 128 is necessary, no idea why
 
-    String latestPath = databasePath + "/latest";
-    String historyPath = databasePath + "/history/" + String(millis());
+    String latestPath = databasePath;
+    // String historyPath = databasePath + "/history/" + String(millis());
 
     if (Firebase.RTDB.setJSON(&fbdo, latestPath.c_str(), &json)) {
       Serial.println("Latest data sent successfully");
