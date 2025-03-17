@@ -6,8 +6,14 @@
 #include "addons/TokenHelper.h"
 #include "addons/RTDBHelper.h"
 
-#define WIFI_SSID "8====D"
-#define WIFI_PASSWORD "coffeebread123"
+#include <Adafruit_MPU6050.h>
+#include <Adafruit_Sensor.h>
+#include <Wire.h>
+
+Adafruit_MPU6050 mpu;
+
+#define WIFI_SSID "Galaxy Z Flip5"
+#define WIFI_PASSWORD "vyrt2391"
 
 // Change this and we are FUCKED
 #define API_KEY "AIzaSyALoU_0xKcg2vyvX8N2G38tjX06Pq0fha0"
@@ -24,6 +30,10 @@ int f_volt2;
 int f_volt3;
 int f_volt4;
 int f_volt5;
+
+float gyroX, gyroY, gyroZ;
+float accX, accY, accZ, accNet; 
+float tempr;
 
 FirebaseData fbdo;
 FirebaseAuth auth;
@@ -62,6 +72,76 @@ void setup() {
     Serial.printf("ESP didn't get connected. The fuckup is here:", config.signer.signupError.message.c_str());
   }
 
+  // Gyroscope searching 
+  if (!mpu.begin()) {
+    Serial.println("Failed to find MPU6050 chip");
+    while (1) {
+      delay(10);
+    }
+  }
+
+  // MPU6050 setup
+  // Do not change this snippet
+  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
+  switch (mpu.getAccelerometerRange()) {
+    case MPU6050_RANGE_2_G:
+      Serial.println("+-2G");
+      break;
+    case MPU6050_RANGE_4_G:
+      Serial.println("+-4G");
+      break;
+    case MPU6050_RANGE_8_G:
+      Serial.println("+-8G");
+      break;
+    case MPU6050_RANGE_16_G:
+      Serial.println("+-16G");
+      break;
+    }
+    mpu.setGyroRange(MPU6050_RANGE_500_DEG);
+    Serial.print("Gyro range set to: ");
+    switch (mpu.getGyroRange()) {
+    case MPU6050_RANGE_250_DEG:
+      Serial.println("+- 250 deg/s");
+      break;
+    case MPU6050_RANGE_500_DEG:
+      Serial.println("+- 500 deg/s");
+      break;
+    case MPU6050_RANGE_1000_DEG:
+      Serial.println("+- 1000 deg/s");
+      break;
+    case MPU6050_RANGE_2000_DEG:
+      Serial.println("+- 2000 deg/s");
+      break;
+    }
+
+    mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
+    Serial.print("Filter bandwidth set to: ");
+    switch (mpu.getFilterBandwidth()) {
+    case MPU6050_BAND_260_HZ:
+      Serial.println("260 Hz");
+      break;
+    case MPU6050_BAND_184_HZ:
+      Serial.println("184 Hz");
+      break;
+    case MPU6050_BAND_94_HZ:
+      Serial.println("94 Hz");
+      break;
+    case MPU6050_BAND_44_HZ:
+      Serial.println("44 Hz");
+      break;
+    case MPU6050_BAND_21_HZ:
+      Serial.println("21 Hz");
+      break;
+    case MPU6050_BAND_10_HZ:
+      Serial.println("10 Hz");
+      break;
+    case MPU6050_BAND_5_HZ:
+      Serial.println("5 Hz");
+      break;
+    }
+    
+    // MPU6050 initialization ends here
+
   config.token_status_callback = tokenStatusCallback; 
 
   Firebase.begin(&config, &auth);
@@ -79,6 +159,20 @@ void loop() {
     f_volt3 = analogRead(F3);
     f_volt4 = analogRead(F4);
     f_volt5 = analogRead(F5);
+
+    sensors_event_t a, g, temp;
+    mpu.getEvent(&a, &g, &temp);
+    
+    gyroX = g.gyro.x;
+    gyroY = g.gyro.y;
+    gyroZ = g.gyro.z;
+
+    accX = a.acceleration.x;
+    accY = a.acceleration.y;
+    accZ = a.acceleration.z;
+    accNet = (sqrt(sq(accX)+sq(accY)+sq(accZ)));
+
+    tempr = temp.temperature;
 
     Serial.print("Finger 1: ");
     Serial.print(f_volt1);
@@ -117,6 +211,11 @@ void loop() {
     json.set("finger3", f_volt3);
     json.set("finger4", f_volt4);
     json.set("finger5", f_volt5);
+    json.set("Gyroscope X", gyroX);
+    json.set("Gyroscope Y", gyroY);
+    json.set("Gyroscope Z", gyroZ);
+    json.set("Net Acceleration", accNet);
+    json.set("Tempreture", tempr);
 
     //Testing code ends here
 
