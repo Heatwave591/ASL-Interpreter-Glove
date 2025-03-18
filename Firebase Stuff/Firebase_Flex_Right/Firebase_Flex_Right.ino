@@ -12,8 +12,10 @@
 
 Adafruit_MPU6050 mpu;
 
-#define WIFI_SSID "Galaxy Z Flip5"
-#define WIFI_PASSWORD "vyrt2391"
+// #define WIFI_SSID "Galaxy Z Flip5"
+// #define WIFI_PASSWORD "vyrt2391"
+#define WIFI_SSID "8====D"
+#define WIFI_PASSWORD "coffeebread123"
 
 // Change this and we are FUCKED
 #define API_KEY "AIzaSyALoU_0xKcg2vyvX8N2G38tjX06Pq0fha0"
@@ -137,10 +139,10 @@ void setup() {
   config.database_url = DATABASE_URL;
 
   if (Firebase.signUp(&config, &auth, "", "")) {
-    Serial.println("ESP is in");
+    // Serial.println("ESP is in");
     uid = auth.token.uid.c_str();
   } else {
-    Serial.printf("ESP didn't get connected. The fuckup is here:", config.signer.signupError.message.c_str());
+    // Serial.printf("ESP didn't get connected. The fuckup is here:", config.signer.signupError.message.c_str());
   }
 
   config.token_status_callback = tokenStatusCallback; 
@@ -175,34 +177,46 @@ void loop() {
 
     tempr = temp.temperature;
 
-    Serial.print("Finger 1: ");
+    // Serial.print("Finger 1: ");
     Serial.print(f_volt1);
-    Serial.print("\t"); 
+    Serial.print(", "); 
 
-    Serial.print("Finger 2: ");
+    // Serial.print("Finger 2: ");
     Serial.print(f_volt2);
-    Serial.print("\t");
+    Serial.print(", ");
 
-    Serial.print("Finger 3: ");
+    // Serial.print("Finger 3: ");
     Serial.print(f_volt3);
-    Serial.print("\t");
+    Serial.print(", ");
 
-    Serial.print("Finger 4: ");
+    // Serial.print("Finger 4: ");
     Serial.print(f_volt4);
-    Serial.print("\t");
+    Serial.print(", ");
 
-    Serial.print("Finger 5: ");
+    // Serial.print("Finger 5: ");
     Serial.print(f_volt5);
+    Serial.print(", ");
+
+    Serial.print(gyroX);
+    Serial.print(", ");
+
+    Serial.print(gyroY);
+    Serial.print(", ");
+
+    Serial.print(gyroZ);
+    Serial.print(", ");
+
+    Serial.print(accNet);
     Serial.println();
     
     // This is the same testing code from
     // some of the other files.
     // Remove this while using sensors
-    f_volt1 = random(1024);
-    f_volt2 = random(1024);
-    f_volt3 = random(1024);
-    f_volt4 = random(1024);
-    f_volt5 = random(1024);
+    // f_volt1 = random(1024);
+    // f_volt2 = random(1024);
+    // f_volt3 = random(1024);
+    // f_volt4 = random(1024);
+    // f_volt5 = random(1024);
     // gyroX = random(1024);
     // gyroY = random(1024);
     // gyroZ = random(1024);
@@ -233,12 +247,12 @@ void loop() {
     String latestPath = databasePath;
     // String historyPath = databasePath + "/history/" + String(millis());
 
-    if (Firebase.RTDB.setJSON(&fbdo, latestPath.c_str(), &json)) {
-      Serial.println("GGWP");
-    } else {
-      Serial.println("Kal");
-      Serial.println(": " + fbdo.errorReason());
-    }
+    // if (Firebase.RTDB.setJSON(&fbdo, latestPath.c_str(), &json)) {
+    //   Serial.println("GGWP");
+    // } else {
+    //   Serial.println("Kal");
+    //   Serial.println(": " + fbdo.errorReason());
+    // }
     
   }
 }
