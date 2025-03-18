@@ -143,7 +143,7 @@ void handleRoot() {
   // server.send(200, "text/html", index_html);
   
   // Method 2: Serve the HTML from SPIFFS file
-  File file = SPIFFS.open("/index.html", "r");
+  File file = SPIFFS.open("/data/webpage.html", "r");
   if (!file) {
     Serial.println("Failed to open file");
     server.send(500, "text/plain", "Internal Server Error");

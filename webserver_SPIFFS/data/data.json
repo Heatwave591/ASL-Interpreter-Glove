@@ -1,8 +1,12 @@
 {
-    "f1": 512,
-    "f2": 345,
-    "f3": 789,
-    "f4": 123,
-    "f5": 678,
-    "decision": "Test Decision"
+  "f1": 823,
+  "f2": 756,
+  "f3": 912,
+  "f4": 687,
+  "f5": 845,
+  "gyroX": 1.24,
+  "gyroY": -0.57,
+  "gyroZ": 0.31,
+  "netAccel": 9.82,
+  "decision": "GESTURE: GRAB DETECTED"
 }

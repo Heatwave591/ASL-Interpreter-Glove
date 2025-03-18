@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Finger Sensor Monitor</title>
+  <title>Finger Sensor & MPU6050 Monitor</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <style>
     body { 
@@ -12,7 +11,7 @@
       padding: 20px; 
       background-color: #f5f5f5;
     }
-    h1 { 
+    h1, h2 { 
       color: #333; 
       margin-bottom: 20px;
     }
@@ -23,6 +22,11 @@
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .sensor-section {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
     }
     .sensor-grid { 
       display: flex; 
@@ -38,7 +42,15 @@
       margin-bottom: 10px; 
       background-color: #f8f8f8; 
     }
-    .sensor-box h3 {
+    .mpu-box {
+      width: 23%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background-color: #f0f8ff;
+    }
+    .sensor-box h3, .mpu-box h3 {
       margin-top: 0;
       margin-bottom: 10px;
       color: #666;
@@ -47,6 +59,11 @@
       font-size: 24px;
       font-weight: bold;
       color: #0066cc;
+    }
+    .mpu-value {
+      font-size: 20px;
+      font-weight: bold;
+      color: #006633;
     }
     .decision-box { 
       padding: 15px; 
@@ -84,66 +101,162 @@
 </head>
 <body>
   <div class='container'>
-    <h1>Finger Sensor Monitor</h1>
+    <h1>Sensor Monitor Dashboard</h1>
     
-    <div class='sensor-grid'>
-      <div class='sensor-box'>
-        <h3>Finger 1</h3>
-        <div class='sensor-value' id='f1'>0</div>
+    <div class='sensor-section'>
+      <h2>Finger Sensors</h2>
+      <div class='sensor-grid'>
+        <div class='sensor-box'>
+          <h3>Finger 1</h3>
+          <div class='sensor-value' id='f1'>0</div>
+        </div>
+        <div class='sensor-box'>
+          <h3>Finger 2</h3>
+          <div class='sensor-value' id='f2'>0</div>
+        </div>
+        <div class='sensor-box'>
+          <h3>Finger 3</h3>
+          <div class='sensor-value' id='f3'>0</div>
+        </div>
+        <div class='sensor-box'>
+          <h3>Finger 4</h3>
+          <div class='sensor-value' id='f4'>0</div>
+        </div>
+        <div class='sensor-box'>
+          <h3>Finger 5</h3>
+          <div class='sensor-value' id='f5'>0</div>
+        </div>
       </div>
-      <div class='sensor-box'>
-        <h3>Finger 2</h3>
-        <div class='sensor-value' id='f2'>0</div>
-      </div>
-      <div class='sensor-box'>
-        <h3>Finger 3</h3>
-        <div class='sensor-value' id='f3'>0</div>
-      </div>
-      <div class='sensor-box'>
-        <h3>Finger 4</h3>
-        <div class='sensor-value' id='f4'>0</div>
-      </div>
-      <div class='sensor-box'>
-        <h3>Finger 5</h3>
-        <div class='sensor-value' id='f5'>0</div>
+    </div>
+    
+    <div class='sensor-section'>
+      <h2>MPU6050 Readings</h2>
+      <div class='sensor-grid'>
+        <div class='mpu-box'>
+          <h3>Gyro X</h3>
+          <div class='mpu-value' id='gyroX'>0</div>
+        </div>
+        <div class='mpu-box'>
+          <h3>Gyro Y</h3>
+          <div class='mpu-value' id='gyroY'>0</div>
+        </div>
+        <div class='mpu-box'>
+          <h3>Gyro Z</h3>
+          <div class='mpu-value' id='gyroZ'>0</div>
+        </div>
+        <div class='mpu-box'>
+          <h3>Net Accel</h3>
+          <div class='mpu-value' id='netAccel'>0</div>
+        </div>
       </div>
     </div>
     
     <div class='decision-box' id='decision'>Waiting for data...</div>
     
     <div class='log' id='log'>
-      <div class='log-entry'><span class='timestamp'>[System]</span> Finger sensor monitor initialized</div>
+      <div class='log-entry'><span class='timestamp'>[System]</span> Sensor monitor initialized</div>
     </div>
   </div>
   
   <script>
+    // Sample sensor data to simulate readings
+    const sampleData = [
+      {
+        "f1": 823,
+        "f2": 756,
+        "f3": 912,
+        "f4": 687,
+        "f5": 845,
+        "gyroX": 1.24,
+        "gyroY": -0.57,
+        "gyroZ": 0.31,
+        "netAccel": 9.82,
+        "decision": "GESTURE: GRAB DETECTED"
+      },
+      {
+        "f1": 512,
+        "f2": 678,
+        "f3": 745,
+        "f4": 592,
+        "f5": 624,
+        "gyroX": 0.35,
+        "gyroY": 1.42,
+        "gyroZ": -0.18,
+        "netAccel": 8.95,
+        "decision": "GESTURE: POINTING"
+      },
+      {
+        "f1": 924,
+        "f2": 901,
+        "f3": 888,
+        "f4": 912,
+        "f5": 935,
+        "gyroX": -0.87,
+        "gyroY": -0.22,
+        "gyroZ": 1.05,
+        "netAccel": 10.25,
+        "decision": "GESTURE: FIST CLOSED"
+      },
+      {
+        "f1": 245,
+        "f2": 287,
+        "f3": 301,
+        "f4": 275,
+        "f5": 264,
+        "gyroX": 2.15,
+        "gyroY": 0.78,
+        "gyroZ": 0.44,
+        "netAccel": 9.17,
+        "decision": "GESTURE: HAND OPEN"
+      },
+      {
+        "f1": 675,
+        "f2": 315,
+        "f3": 278,
+        "f4": 782,
+        "f5": 823,
+        "gyroX": 0.56,
+        "gyroY": -1.23,
+        "gyroZ": -0.84,
+        "netAccel": 9.64,
+        "decision": "GESTURE: PEACE SIGN"
+      }
+    ];
+    
+    let currentDataIndex = 0;
+    
     function updateValues() {
-      fetch('/data.json')
-        .then(response => response.json())
-        .then(data => {
-          // Update sensor values
-          document.getElementById('f1').innerText = data.f1;
-          document.getElementById('f2').innerText = data.f2;
-          document.getElementById('f3').innerText = data.f3;
-          document.getElementById('f4').innerText = data.f4;
-          document.getElementById('f5').innerText = data.f5;
-          
-          // Update decision
-          document.getElementById('decision').innerText = data.decision;
-          
-          // Add to log
-          const log = document.getElementById('log');
-          const timestamp = new Date().toLocaleTimeString();
-          const entry = document.createElement('div');
-          entry.className = 'log-entry';
-          entry.innerHTML = `<span class='timestamp'>[${timestamp}]</span> F1: ${data.f1}, F2: ${data.f2}, F3: ${data.f3}, F4: ${data.f4}, F5: ${data.f5} → ${data.decision}`;
-          
-          log.appendChild(entry);
-          log.scrollTop = log.scrollHeight;
-        })
-        .catch(error => {
-          console.error('Error fetching sensor data:', error);
-        });
+      // Get the next sample data
+      const data = sampleData[currentDataIndex];
+      
+      // Update finger sensor values
+      document.getElementById('f1').innerText = data.f1;
+      document.getElementById('f2').innerText = data.f2;
+      document.getElementById('f3').innerText = data.f3;
+      document.getElementById('f4').innerText = data.f4;
+      document.getElementById('f5').innerText = data.f5;
+      
+      // Update MPU6050 values
+      document.getElementById('gyroX').innerText = data.gyroX.toFixed(2);
+      document.getElementById('gyroY').innerText = data.gyroY.toFixed(2);
+      document.getElementById('gyroZ').innerText = data.gyroZ.toFixed(2);
+      document.getElementById('netAccel').innerText = data.netAccel.toFixed(2);
+      
+      // Update decision
+      document.getElementById('decision').innerText = data.decision;
+      
+      // Add to log
+      const log = document.getElementById('log');
+      const timestamp = new Date().toLocaleTimeString();
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.innerHTML = `<span class='timestamp'>[${timestamp}]</span> F1: ${data.f1}, F2: ${data.f2}, F3: ${data.f3}, F4: ${data.f4}, F5: ${data.f5} | Accel: ${data.netAccel.toFixed(2)} | Decision: ${data.decision}`;
+      
+      log.appendChild(entry);
+      log.scrollTop = log.scrollHeight;
+      
+      // Move to next data sample (looping back to start if needed)
+      currentDataIndex = (currentDataIndex + 1) % sampleData.length;
     }
     
     // Update values every 2.5 seconds
