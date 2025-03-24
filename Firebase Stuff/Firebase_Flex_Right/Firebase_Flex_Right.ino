@@ -177,6 +177,16 @@ void loop() {
 
     tempr = temp.temperature;
 
+    if (f_volt3 < 200){
+      f_volt3 = 0;
+    }
+        if (f_volt4 < 200){
+      f_volt4 = 0;
+    }
+        if (f_volt5 < 200){
+      f_volt5 = 0;
+    }
+
     // Serial.print("Finger 1: ");
     Serial.print(f_volt1);
     Serial.print(", "); 
@@ -247,12 +257,12 @@ void loop() {
     String latestPath = databasePath;
     // String historyPath = databasePath + "/history/" + String(millis());
 
-    // if (Firebase.RTDB.setJSON(&fbdo, latestPath.c_str(), &json)) {
-    //   Serial.println("GGWP");
-    // } else {
-    //   Serial.println("Kal");
-    //   Serial.println(": " + fbdo.errorReason());
-    // }
+    if (Firebase.RTDB.setJSON(&fbdo, latestPath.c_str(), &json)) {
+      Serial.println("GGWP");
+    } else {
+      Serial.println("Kal");
+      Serial.println(": " + fbdo.errorReason());
+    }
     
   }
 }
