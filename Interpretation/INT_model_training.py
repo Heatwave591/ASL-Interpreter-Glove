@@ -12,15 +12,20 @@ import argparse
 
 
 def load_data(file_path):
-    """Load and prepare the ASL dataset from CSV."""
+    """Load and prepare the ASL dataset from CSV without header."""
     print(f"Loading data from {file_path}...")
     try:
-        df = pd.read_csv(file_path)
+        # Add header names since the file doesn't have them
+        # Assuming columns are in order: sign, finger1, finger2, finger3, finger4, finger5
+        df = pd.read_csv(file_path, header=None, 
+                         names=['sign', 'finger1', 'finger2', 'finger3', 'finger4', 'finger5'])
+        
         print(f"Dataset loaded: {df.shape[0]} samples, {df.shape[1]} columns")
         return df
     except Exception as e:
         print(f"Error loading dataset: {e}")
         return None
+
 
 def visualize_dataset(df, output_dir='plots'):
     """Create visualizations of the dataset."""
