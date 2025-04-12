@@ -10,10 +10,10 @@
 
 Adafruit_MPU6050 mpu;
 
-// #define WIFI_SSID "Galaxy Z Flip5"
-// #define WIFI_PASSWORD "vyrt2391"
-#define WIFI_SSID "8====D"
-#define WIFI_PASSWORD "coffeebread123"
+#define WIFI_SSID "Galaxy Z Flip5"
+#define WIFI_PASSWORD "vyrt2391"
+// #define WIFI_SSID "8====D"
+// #define WIFI_PASSWORD "coffeebread123"
 
 // Change this and we are FUCKED
 #define API_KEY "AIzaSyALoU_0xKcg2vyvX8N2G38tjX06Pq0fha0"
@@ -106,12 +106,12 @@ void setup() {
   Serial.println(WiFi.localIP());
   
   // Gyroscope searching 
-  if (!mpu.begin()) {
-    Serial.println("Failed to find MPU6050 chip");
-    while (1) {
-      delay(10);
-    }
-  }
+  // if (!mpu.begin()) {
+  //   Serial.println("Failed to find MPU6050 chip");
+  //   while (1) {
+  //     delay(10);
+  //   }
+  // }
 
   Serial.println("SUIIIIIIII");
 

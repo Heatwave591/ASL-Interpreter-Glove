@@ -53,46 +53,66 @@ struct FingerRange {
 };
 
 FingerRange letterModels[] = {
-  {{1554, 2017, 1293, 1067, 0}, {2906, 3042, 2415, 2295, 0}, 'a'},
-  {{0, 0, 0, 0, 774}, {0, 199, 0, 0, 1252}, 'b'},
-  {{76, 717, 123, 198, 0}, {1424, 1885, 1185, 995, 0}, 'c'},
-  {{346, 1521, 640, 0, 0}, {1854, 2527, 1671, 0, 0}, 'd'},
-  {{453, 1680, 1111, 859, 380}, {1967, 2470, 1671, 1855, 1828}, 'e'},
-  {{0, 0, 0, 205, 0}, {0, 0, 0, 991, 0}, 'f'},
+  {{100, 117, 93, 107, 0}, {2906, 3042, 2415, 2295, 0}, 'a'},
+  {{0, 0, 0, 0, 100}, {0, 199, 0, 0, 2500}, 'b'},
+  // {{76, 77, 73, 78, 0}, {1424, 1885, 1185, 995, 0}, 'c'},  
+  {{50, 50, 50, 0, 0}, {1854, 1500, 1300, 0, 0}, 'd'},
+  // {{453, 1680, 1111, 859, 380}, {1967, 2470, 1671, 1855, 1828}, 'e'},
+  {{0, 0, 0, 205, 0}, {0, 0, 0, 1500, 0}, 'f'},
   {{727, 1771, 1035, 0, 0}, {2000, 2467, 1899, 0, 0}, 'g'},
-  {{1059, 1023, 0, 0, 0}, {2303, 1924, 0, 0, 0}, 'h'},
+  {{150, 150, 0, 0, 0}, {2303, 1924, 0, 0, 0}, 'h'},
   {{0, 377, 402, 169, 117}, {0, 2615, 2037, 2309, 1238}, 'i'},
-  {{29, 308, 0, 0, 0}, {1870, 1136, 53, 0, 0}, 'k'},
-  {{111, 1554, 903, 0, 17}, {1421, 2294, 1719, 0, 987}, 'l'},
-  {{214, 1296, 244, 51, 2}, {2183, 2339, 1392, 1279, 1150}, 'm'},
-  {{64, 228, 138, 146, 39}, {2093, 2493, 1408, 1117, 1488}, 'n'},
-  {{23, 441, 194, 13, 0}, {1447, 2023, 1528, 952, 163}, 'o'},
-  {{91, 32, 0, 0, 0}, {1492, 1657, 0, 0, 0}, 'p'},
-  {{221, 1793, 586, 0, 0}, {1761, 2533, 1900, 0, 6}, 'q'},
-  {{159, 772, 0, 64, 0}, {2154, 2163, 1143, 1078, 626}, 'r'},
-  {{71, 1424, 43, 400, 6}, {2377, 2293, 1792, 1233, 1251}, 's'},
-  {{113, 305, 343, 31, 54}, {1794, 1385, 1600, 894, 1387}, 't'},
-  {{33, 291, 0, 0, 0}, {2076, 1774, 0, 0, 0}, 'u'},
-  {{48, 752, 0, 0, 0}, {2134, 2134, 0, 0, 434}, 'v'},
-  {{90, 0, 0, 0, 0}, {1844, 0, 0, 0, 780}, 'w'},
-  {{31, 941, 133, 0, 158}, {1614, 2559, 1607, 961, 1271}, 'x'},
-  {{0, 63, 13, 45, 0}, {16, 1961, 1250, 677, 0}, 'y'},
-  {{0, 1006, 922, 0, 0}, {0, 1726, 1632, 0, 0}, 'ILY'}
+  {{29, 308, 0, 0, 0}, {1870, 1136, 0, 0, 0}, 'k'},
+  // {{111, 111, 111, 0, 17}, {1421, 2294, 1719, 0, 987}, 'l'},
+  // {{214, 1296, 244, 51, 2}, {2183, 2339, 1392, 1279, 1150}, 'm'},
+  // {{64, 228, 138, 146, 39}, {2093, 2493, 1408, 1117, 1488}, 'n'},
+  {{23, 441, 194, 13, 100}, {1847, 2023, 1628, 1652, 1863}, 'o'},
+  // {{91, 32, 0, 0, 0}, {1492, 1657, 0, 0, 0}, 'p'},
+  // {{221, 1793, 586, 0, 0}, {1761, 2533, 1900, 0, 6}, 'q'},
+  // {{159, 772, 0, 64, 0}, {2154, 2163, 1143, 1078, 626}, 'r'},
+  // {{71, 1424, 43, 400, 6}, {2377, 2293, 1792, 1233, 1251}, 's'},
+  // {{113, 305, 343, 31, 54}, {1794, 1385, 1600, 894, 1387}, 't'},
+  // {{33, 291, 0, 0, 0}, {2076, 1774, 0, 0, 0}, 'u'},
+  {{48, 500, 0, 0, 300}, {2134, 2134, 0, 0, 1600}, 'v'},
+  {{90, 0, 0, 0, 300}, {2500, 0, 0, 0, 1600}, 'w'},
+  // {{31, 941, 133, 0, 158}, {1614, 2559, 1607, 961, 1271}, 'x'},
+  {{0, 63, 13, 45, 0}, {0, 1961, 1550, 1677, 0}, 'y'},
+  // {{0, 1006, 922, 0, 0}, {0, 1726, 1632, 0, 0}, 'ILY'}
 };
 const int modelCount = sizeof(letterModels) / sizeof(letterModels[0]);
 
 char inferLetterFromRange(int pinky, int ring, int middle, int index, int thumb) {
   for (int i = 0; i < modelCount; i++) {
     bool match = true;
-    if (pinky  < letterModels[i].minVal[0] || pinky  > letterModels[i].maxVal[0]) match = false;
-    if (ring   < letterModels[i].minVal[1] || ring   > letterModels[i].maxVal[1]) match = false;
-    if (middle < letterModels[i].minVal[2] || middle > letterModels[i].maxVal[2]) match = false;
-    if (index  < letterModels[i].minVal[3] || index  > letterModels[i].maxVal[3]) match = false;
-    if (thumb  < letterModels[i].minVal[4] || thumb  > letterModels[i].maxVal[4]) match = false;
+    for (int j = 0; j < 5; j++) {
+      int val;
+      switch(j) {
+        case 0: val = thumb; break;
+        case 1: val = index; break;
+        case 2: val = middle; break;
+        case 3: val = ring; break;
+        case 4: val = pinky; break;
+      }
+
+      int minVal = letterModels[i].minVal[j];
+      int maxVal = letterModels[i].maxVal[j];
+
+      // Add 10% margin below min and 15% margin above max
+      int extendedMin = minVal - (minVal * 15) / 100;
+      int extendedMax = maxVal + (maxVal * 15) / 100;
+
+      if (val < extendedMin || val > extendedMax) {
+        match = false;
+        break;
+      }
+    }
+
     if (match) return letterModels[i].letter;
   }
   return '-';
 }
+
+
 
 void setup() {
   Serial.begin(115200);
@@ -123,72 +143,72 @@ void setup() {
   }
 
   // Gyroscope searching 
-  if (!mpu.begin()) {
-    Serial.println("Failed to find MPU6050 chip");
-    while (1) {
-      delay(10);
-    }
-  }
+  // if (!mpu.begin()) {
+  //   Serial.println("Failed to find MPU6050 chip");
+  //   while (1) {
+  //     delay(10);
+  //   }
+  // }
 
-  // MPU6050 setup
-  // Do not change this snippet
-  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
-  switch (mpu.getAccelerometerRange()) {
-    case MPU6050_RANGE_2_G:
-      Serial.println("+-2G");
-      break;
-    case MPU6050_RANGE_4_G:
-      Serial.println("+-4G");
-      break;
-    case MPU6050_RANGE_8_G:
-      Serial.println("+-8G");
-      break;
-    case MPU6050_RANGE_16_G:
-      Serial.println("+-16G");
-      break;
-    }
-    mpu.setGyroRange(MPU6050_RANGE_500_DEG);
-    Serial.print("Gyro range set to: ");
-    switch (mpu.getGyroRange()) {
-    case MPU6050_RANGE_250_DEG:
-      Serial.println("+- 250 deg/s");
-      break;
-    case MPU6050_RANGE_500_DEG:
-      Serial.println("+- 500 deg/s");
-      break;
-    case MPU6050_RANGE_1000_DEG:
-      Serial.println("+- 1000 deg/s");
-      break;
-    case MPU6050_RANGE_2000_DEG:
-      Serial.println("+- 2000 deg/s");
-      break;
-    }
+  // // MPU6050 setup
+  // // Do not change this snippet
+  // mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
+  // switch (mpu.getAccelerometerRange()) {
+  //   case MPU6050_RANGE_2_G:
+  //     Serial.println("+-2G");
+  //     break;
+  //   case MPU6050_RANGE_4_G:
+  //     Serial.println("+-4G");
+  //     break;
+  //   case MPU6050_RANGE_8_G:
+  //     Serial.println("+-8G");
+  //     break;
+  //   case MPU6050_RANGE_16_G:
+  //     Serial.println("+-16G");
+  //     break;
+  //   }
+  //   mpu.setGyroRange(MPU6050_RANGE_500_DEG);
+  //   Serial.print("Gyro range set to: ");
+  //   switch (mpu.getGyroRange()) {
+  //   case MPU6050_RANGE_250_DEG:
+  //     Serial.println("+- 250 deg/s");
+  //     break;
+  //   case MPU6050_RANGE_500_DEG:
+  //     Serial.println("+- 500 deg/s");
+  //     break;
+  //   case MPU6050_RANGE_1000_DEG:
+  //     Serial.println("+- 1000 deg/s");
+  //     break;
+  //   case MPU6050_RANGE_2000_DEG:
+  //     Serial.println("+- 2000 deg/s");
+  //     break;
+  //   }
 
-    mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
-    Serial.print("Filter bandwidth set to: ");
-    switch (mpu.getFilterBandwidth()) {
-    case MPU6050_BAND_260_HZ:
-      Serial.println("260 Hz");
-      break;
-    case MPU6050_BAND_184_HZ:
-      Serial.println("184 Hz");
-      break;
-    case MPU6050_BAND_94_HZ:
-      Serial.println("94 Hz");
-      break;
-    case MPU6050_BAND_44_HZ:
-      Serial.println("44 Hz");
-      break;
-    case MPU6050_BAND_21_HZ:
-      Serial.println("21 Hz");
-      break;
-    case MPU6050_BAND_10_HZ:
-      Serial.println("10 Hz");
-      break;
-    case MPU6050_BAND_5_HZ:
-      Serial.println("5 Hz");
-      break;
-    }
+  //   mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
+  //   Serial.print("Filter bandwidth set to: ");
+  //   switch (mpu.getFilterBandwidth()) {
+  //   case MPU6050_BAND_260_HZ:
+  //     Serial.println("260 Hz");
+  //     break;
+  //   case MPU6050_BAND_184_HZ:
+  //     Serial.println("184 Hz");
+  //     break;
+  //   case MPU6050_BAND_94_HZ:
+  //     Serial.println("94 Hz");
+  //     break;
+  //   case MPU6050_BAND_44_HZ:
+  //     Serial.println("44 Hz");
+  //     break;
+  //   case MPU6050_BAND_21_HZ:
+  //     Serial.println("21 Hz");
+  //     break;
+  //   case MPU6050_BAND_10_HZ:
+  //     Serial.println("10 Hz");
+  //     break;
+  //   case MPU6050_BAND_5_HZ:
+  //     Serial.println("5 Hz");
+  //     break;
+  //   }
     
     // MPU6050 initialization ends here
 
@@ -204,25 +224,25 @@ void loop() {
   if (Firebase.ready() && (millis() - sendDataPrevMillis > 2500 || sendDataPrevMillis == 0)) {
     sendDataPrevMillis = millis();
     
-    f_volt1 = analogRead(F1);
-    f_volt2 = analogRead(F2);
-    f_volt3 = analogRead(F3);
-    f_volt4 = analogRead(F4);
-    f_volt5 = analogRead(F5);
+    f_volt1 = analogRead(A0);
+    f_volt2 = analogRead(A1);
+    f_volt3 = analogRead(A2);
+    f_volt4 = analogRead(A3);
+    f_volt5 = analogRead(A4);
 
-    sensors_event_t a, g, temp;
-    mpu.getEvent(&a, &g, &temp);
+    // sensors_event_t a, g, temp;
+    // mpu.getEvent(&a, &g, &temp);
     
-    gyroX = g.gyro.x;
-    gyroY = g.gyro.y;
-    gyroZ = g.gyro.z;
+    // gyroX = g.gyro.x;
+    // gyroY = g.gyro.y;
+    // gyroZ = g.gyro.z;
 
-    accX = a.acceleration.x;
-    accY = a.acceleration.y;
-    accZ = a.acceleration.z;
-    accNet = (sqrt(sq(accX)+sq(accY)+sq(accZ)));
+    // accX = a.acceleration.x;
+    // accY = a.acceleration.y;
+    // accZ = a.acceleration.z;
+    // accNet = (sqrt(sq(accX)+sq(accY)+sq(accZ)));
 
-    tempr = temp.temperature;
+    // tempr = temp.temperature;
 
     Serial.print("Finger 1: ");
     Serial.print(f_volt1);
@@ -268,11 +288,11 @@ void loop() {
     json.set("finger3", f_volt3);
     json.set("finger4", f_volt4);
     json.set("finger5", f_volt5);
-    json.set("Gyroscope X", gyroX);
-    json.set("Gyroscope Y", gyroY);
-    json.set("Gyroscope Z", gyroZ);
-    json.set("Net Acceleration", accNet);
-    json.set("Tempreture", tempr);
+    // json.set("Gyroscope X", gyroX);
+    // json.set("Gyroscope Y", gyroY);
+    // json.set("Gyroscope Z", gyroZ);
+    // json.set("Net Acceleration", accNet);
+    // json.set("Tempreture", tempr);
     json.set("Predicted Letter", predictedLetter);
 
     //Testing code ends here
