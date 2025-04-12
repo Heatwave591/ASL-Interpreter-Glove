@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Interpreter Glove Dashboard</title>
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-database-compat.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .panel {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .panel h2 {
+            margin-top: 0;
+            color: #3498db;
+            font-size: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .sensor-box {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .sensor-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .sensor-value {
+            font-size: 22px;
+            color: #2980b9;
+        }
+        .prediction-panel {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #2c3e50;
+            border-radius: 8px;
+            color: white;
+        }
+        .prediction-label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .prediction-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+        .status {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .connection-status {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .connected {
+            background-color: #2ecc71;
+        }
+        .disconnected {
+            background-color: #e74c3c;
+        }
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+            }
+            .panel {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ASL Interpreter Glove Dashboard</h1>
+            <div class="subtitle">Real-time sensor monitoring and sign language detection</div>
+        </header>
+
+        <div class="dashboard">
+            <div class="panel">
+                <h2>Flex Sensor Readings</h2>
+                <div class="sensor-grid">
+                    <div class="sensor-box">
+                        <div class="sensor-label">Finger 1 (Thumb)</div>
+                        <div class="sensor-value" id="finger1">--</div>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">Finger 2 (Index)</div>
+                        <div class="sensor-value" id="finger2">--</div>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">Finger 3 (Middle)</div>
+                        <div class="sensor-value" id="finger3">--</div>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">Finger 4 (Ring)</div>
+                        <div class="sensor-value" id="finger4">--</div>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">Finger 5 (Pinky)</div>
+                        <div class="sensor-value" id="finger5">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Gyroscope Readings</h2>
+                <div class="sensor-grid">
+                    <div class="sensor-box">
+                        <div class="sensor-label">Gyro X</div>
+                        <div class="sensor-value" id="gyroX">--</div>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">Gyro Y</div>
+                        <div class="sensor-value" id="gyroY">--</div>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">Gyro Z</div>
+                        <div class="sensor-value" id="gyroZ">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="prediction-panel">
+            <div class="prediction-label">Predicted Sign</div>
+            <div class="prediction-value" id="predictedSign">--</div>
+        </div>
+
+        <div class="status">
+            <span class="connection-status" id="connectionIndicator"></span>
+            <span id="connectionStatus">Connecting to Firebase...</span>
+            <div id="lastUpdate"></div>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyALoU_0xKcg2vyvX8N2G38tjX06Pq0fha0",
+            databaseURL: "https://asl-interpreter-glove-default-rtdb.firebaseio.com",
+            projectId: "asl-interpreter-glove"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Generate random gyro values
+        function getRandomGyroValue() {
+            return (Math.random() * 2 - 1).toFixed(2);
+        }
+
+        // Update UI with data
+        function updateUI(data) {
+            if (!data) return;
+            
+            // Update flex sensor values
+            document.getElementById('finger1').textContent = data.finger1 || '--';
+            document.getElementById('finger2').textContent = data.finger2 || '--';
+            document.getElementById('finger3').textContent = data.finger3 || '--';
+            document.getElementById('finger4').textContent = data.finger4 || '--';
+            document.getElementById('finger5').textContent = data.finger5 || '--';
+            
+            // Update gyro values (random for demonstration)
+            document.getElementById('gyroX').textContent = getRandomGyroValue();
+            document.getElementById('gyroY').textContent = getRandomGyroValue();
+            document.getElementById('gyroZ').textContent = getRandomGyroValue();
+            
+            // Update predicted sign
+            document.getElementById('predictedSign').textContent = data.predictedLetter || '--';
+            
+            // Update last updated timestamp
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('lastUpdate').textContent = 'Last updated: ' + timeString;
+        }
+
+        // Set up Firebase data listener
+        const dataRef = database.ref('signLanguageData');
+        
+        dataRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            updateUI(data);
+            
+            // Update connection status
+            document.getElementById('connectionIndicator').className = 'connection-status connected';
+            document.getElementById('connectionStatus').textContent = 'Connected to Firebase';
+        });
+
+        // Handle connection status
+        const connectedRef = database.ref('.info/connected');
+        connectedRef.on('value', (snap) => {
+            if (snap.val() === true) {
+                document.getElementById('connectionIndicator').className = 'connection-status connected';
+                document.getElementById('connectionStatus').textContent = 'Connected to Firebase';
+            } else {
+                document.getElementById('connectionIndicator').className = 'connection-status disconnected';
+                document.getElementById('connectionStatus').textContent = 'Disconnected from Firebase';
+            }
+        });
+
+        // Handle errors
+        dataRef.on('error', (error) => {
+            console.error('Firebase error:', error);
+            document.getElementById('connectionIndicator').className = 'connection-status disconnected';
+            document.getElementById('connectionStatus').textContent = 'Error: ' + error.message;
+        });
+    </script>
+</body>
+</html>
