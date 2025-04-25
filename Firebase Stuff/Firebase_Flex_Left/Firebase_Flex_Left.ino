@@ -12,12 +12,12 @@
 
 Adafruit_MPU6050 mpu;
 
-#define WIFI_SSID "Galaxy Z Flip5"
-#define WIFI_PASSWORD "vyrt2391"
+#define WIFI_SSID "SSID here"
+#define WIFI_PASSWORD "Wifi password here"
 
-// Change this and we are FUCKED
-#define API_KEY "AIzaSyALoU_0xKcg2vyvX8N2G38tjX06Pq0fha0"
-#define DATABASE_URL "asl-interpreter-glove-default-rtdb.firebaseio.com"
+//Change this and we are FUCKED
+#define API_KEY "API Key here"
+#define DATABASE_URL "Database URL here"
 
 const int F1 = A0; 
 const int F2 = A1; 

@@ -9,18 +9,15 @@
 #include <Wire.h>
 
 Adafruit_MPU6050 mpu;
+#define WIFI_SSID "SSID here"
+#define WIFI_PASSWORD "Wifi password here"
 
-#define WIFI_SSID "Galaxy Z Flip5"
-#define WIFI_PASSWORD "vyrt2391"
-// #define WIFI_SSID "8====D"
-// #define WIFI_PASSWORD "coffeebread123"
+//Change this and we are FUCKED
+#define API_KEY "API Key here"
+#define DATABASE_URL "Database URL here"
 
-// Change this and we are FUCKED
-#define API_KEY "AIzaSyALoU_0xKcg2vyvX8N2G38tjX06Pq0fha0"
-#define DATABASE_URL "asl-interpreter-glove-default-rtdb.firebaseio.com"
-
-const int F1 = A0; 
-const int F2 = A1; 
+const int F1 = 37; 
+const int F2 = 33; 
 const int F3 = A2; 
 const int F4 = A3; 
 const int F5 = A4; 

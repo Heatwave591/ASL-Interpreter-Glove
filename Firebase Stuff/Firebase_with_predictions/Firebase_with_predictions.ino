@@ -7,12 +7,12 @@
 #include <addons/RTDBHelper.h>
 
 // WiFi credentials
-#define WIFI_SSID "Galaxy Z Flip5"
-#define WIFI_PASSWORD "vyrt2391"
+#define WIFI_SSID "SSID here"
+#define WIFI_PASSWORD "Wifi password here"
 
 // Firebase project settings
-#define API_KEY "AIzaSyALoU_0xKcg2vyvX8N2G38tjX06Pq0fha0"
-#define DATABASE_URL "https://asl-interpreter-glove-default-rtdb.firebaseio.com/"
+#define API_KEY "API Key here"
+#define DATABASE_URL "Database URL here"
 
 // Define Firebase Data object, auth and config
 FirebaseData fbdo;
