@@ -28,7 +28,7 @@ The ASL-interpreting glove will be designed to detect hand gestures and translat
 	- All the ESP32 models do not have analog pins. If that happens, check the datasheet of the ESP32 and use the ADC pins instead and you should be good to go.
 	- Many ESP32 boards have the issue of some pins being rendered useless when the wifi module is on. If the pin that is needed is being used by wifi, then, you have no choice other than using a different pin.
 	
-- The flex sensors need to create a conventional voltage divider circuit with the same value of resistors across all sensors (We have used the 1KOhm Resistor).
+- The flex sensors need to create a conventional voltage divider circuit with the same value of resistors across all sensors (We have used the 10KOhm Resistor).
 - The IMU follows a straight forward serial connection. 
 	- Connect the power rails together
 	- Connect the Serial Clock and the Serial Data of the IMU to the Serial Clock and Serial Data of the ESP32 respectively
