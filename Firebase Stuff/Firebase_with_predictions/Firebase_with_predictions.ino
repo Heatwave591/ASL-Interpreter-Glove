@@ -42,8 +42,6 @@ struct FingerRange {
   char letter;
 };
 
-// A and C cant work together
-//H an d K cant work together
 FingerRange letterModels[] = {
   {{100, 117, 93, 107, 0}, {2906, 3042, 2415, 2295, 0}, 'a'},
   {{0, 0, 0, 0, 500}, {0, 199, 0, 0, 2500}, 'b'},
