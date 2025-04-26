@@ -60,7 +60,7 @@ The software consists of 4 parts.
 - The process that we followed for this project is to essentially fetch data from the sensors, package the data into a JSON file, send it to a Firebase server and have the HTML file scrap data from there.
 
 #### Firebase Setup
-- Open ![Firebase]{https://firebase.google.com} in your browser.
+- Open ![Firebase](https://firebase.google.com) in your browser.
 - Login using your Google account.
 - Go to Console.
 - Create a new Firebase Project.
