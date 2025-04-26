@@ -11,10 +11,12 @@
 * Design a PCB for the circuit.
 
 **Necessary Equipment and Sensors:**
-* ESP32 microcontroller x 2
-* Flex sensors x 15
-* MPU6050 x 2
-* Pair of gloves x 1
+* [ESP32 microcontroller x 2](https://www.amazon.com/HiLetgo-ESP-WROOM-32-Development-Microcontroller-Integrated/dp/B0718T232Z/ref=sr_1_1?crid=1E77MJF3QUDXL&dib=eyJ2IjoiMSJ9.soccUwva0RJIrxBgE16WUjGVb2gBzEZbRkcOjXFbl7txw_m8j2eB6sRBQfng_1By2xLbPOThXIIX6mm44zSRKBxo3DmCSaaPxRREeTvaz6mRqJSFdvX0UV4u7YCUFF9VzJMH5HSEm69ay5sR7vqI16iSSKkc1n5M4U171zWHULnC6If07JvZlS_vyRk9eYY7LQVSKsYTOywvE9E0JswhrlGnK3uilLnHBdO0v0LSaLqrTVmNWqHisUFKCX0RmKDC_S3Y7NVDhJZNNPbb7mO3_IXQbJ1bYXfzatGhKCRAPVQ.BtD1TH4fLNusaAd__wgz_MqSrZH6kXXjVtp4MKl7kw4&dib_tag=se&keywords=ESP32+adafruit&qid=1745643407&s=industrial&sprefix=esp32+adafruit%2Cindustrial%2C97&sr=1-1)
+* [Flex sensors x 15](https://www.amazon.com/dp/B00LP25V1A?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
+* [MPU6050 x 2](https://www.amazon.com/dp/B0BLGT1F5F?ref=ppx_yo2ov_dt_b_fed_asin_title)
+* [Pair of gloves x 1](https://www.amazon.com/Cotton-Gloves-Handling-Inspection-Photography/dp/B07ZMXNCQ5/ref=sr_1_1_sspa?crid=38A9OGK836FWP&dib=eyJ2IjoiMSJ9.RmDXSiT6_NwJIY7lLORg_hXRWdsfz5oneae0ttufA6xlE6yOU3XQI5IIw6CIP2ooXhPPXH6yb202yVkcDbKFN4tPhf6yFDZhMkIwZQfw2T55du-INUa5a1qSomWbeLcX6CZY6OHX3BhG44cjwEK9NmnZh7daNdz0VL7yuGMPpklnTagvLmJEJSSrEW2Hh6p0hE0ZwRGx5XYDeJZQDgXf2UWIse_s8L0uHNks6Kb9-btsYlCjnz9PRu4FuRj5JpmsLnc2chX2WcwSZNavxAectru4EzFSM2AwrvvHo5iIlK4.F7i_RE5KeiKyVe0g_Vekxm2Gx2jjtA3lpxnY2aW0wPw&dib_tag=se&keywords=gloves%2Bcotton&qid=1745643483&sprefix=gloves%2Bcotton%2Caps%2C123&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1)
+
+  Note - The links for the products are embedded in the text. Clicking the link will redirect you to amazon.com.
 
 # Project Description
 The ASL-interpreting glove will be designed to detect hand gestures and translate them into spoken words and a visual interface output. The system will consist of flex sensors to track finger movements, MPU6050 sensors for motion detection, and ESP32 microcontrollers to process and transmit data to an output system.
