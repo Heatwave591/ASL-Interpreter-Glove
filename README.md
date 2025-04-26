@@ -83,8 +83,8 @@ The software consists of 4 parts.
 	- Replace WIFI_SSID and WIFI_PASSWORD with your credentials. Make sure that the network is in the 2.4GHz band 
 	- Replace API_KEY and DATABASE_URL with the information we got from the firebase server.
 - Once all of this is done, the code is ready to be dumped in the ESP32
-- For the left hand and up and load [Firebase_Flex_Left.ino](https://github.com/Heatwave591/ASL-Interpreter-Glove/tree/main/Firebase%20Stuff/Firebase_Flex_Right/Firebase_Flex_Right.ino)
-- Do the same with [Firebase_Flex_Right.ino](https://github.com/Heatwave591/ASL-Interpreter-Glove/tree/main/Firebase%20Stuff/Firebase_Flex_Right/Firebase_Flex_Right.ino) for the ESP32 that goes on the Right hand.
+- For the left hand and up and load [Firebase_Flex_Left.ino](Firebase%20Stuff/Firebase_Flex_Right/Firebase_Flex_Right.ino)
+- Do the same with [Firebase_Flex_Right.ino](Firebase%20Stuff/Firebase_Flex_Right/Firebase_Flex_Right.ino) for the ESP32 that goes on the Right hand.
 
 #### HTML Setup and Execution
 - Once the server is up and running, We will have to setup the webpage where the inferences will be shown.
