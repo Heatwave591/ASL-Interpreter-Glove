@@ -92,7 +92,7 @@ The software consists of 4 parts.
 - Once the server is up and running, We will have to setup the webpage where the inferences will be shown.
 - Download the [webserver.html](webserver.html) file.
 - Make the changes in lines 192, 193, 194 with the API_KEY, DATABASE_URL and PROJECT_ID.
-- Now, host the file with python
+- Now, host the file with python. (Note that you will not need a separate python script to do this. It can be done in the python interactive terminal by following these setps)
 	- Go to the file directory and open a python interactive terminal.
 	- Run this code  ``` python3 -m SimpleHTTPServer 3000```
 	- This will locally host the webpage.
