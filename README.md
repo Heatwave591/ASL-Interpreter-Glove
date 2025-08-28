@@ -1,8 +1,4 @@
 
-**Team Members:**
-* Kris Gurung
-* Anirudhhan Raghuraman
-* Madalyn Wiley
 
 **Project Goals:**
 * Design an American Sign Language (ASL) interpreting glove that converts sign language to English and outputs the translation.
